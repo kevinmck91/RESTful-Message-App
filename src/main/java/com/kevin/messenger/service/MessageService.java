@@ -12,7 +12,7 @@ public class MessageService {
 	
 
 	//access the messages in database
-	private Map<Long, Message> messages = DatabaseClass.getMessages();
+	private static Map<Long, Message> messages = DatabaseClass.getMessages();
 	
 	//Add new hardcoded message to the database
 	public MessageService(){
@@ -27,7 +27,7 @@ public class MessageService {
 	}
 	
 	//Returns a single method
-	public Message getMessage(long id) {
+	public static Message getMessage(long id) {
 		return messages.get(id);
 	}
 	
