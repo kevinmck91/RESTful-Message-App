@@ -9,7 +9,7 @@ public class DatabaseClass {
 
 //Creates a mock database for message and profiles
 	private static Map<Long, Message> messages = new HashMap<>();
-	private static Map<Long, Profile> profiles = new HashMap<>();
+	private static Map<String, Profile> profiles = new HashMap<>();
 
 	
 //Returns messages and profiles when called 
@@ -18,7 +18,7 @@ public class DatabaseClass {
 		
 	}
 	
-	public static Map<Long, Profile> getprofiles(){
+	public static Map<String, Profile> getProfiles(){
 	return profiles;
 		
 	}

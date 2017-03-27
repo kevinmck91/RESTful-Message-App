@@ -20,7 +20,9 @@ import com.kevin.messenger.service.MessageService;
  */
 
 // indicator so URI can find the appropriate class
-@Path("/messages")		
+@Path("/messages")	
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)	
 public class MessageResource {
 	
 	//Creates a message service (Creates the application)
@@ -31,7 +33,6 @@ public class MessageResource {
 	 *  The response will be returned as XML/JSON
 	 */
 	@GET	
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessages(){
 		return messageService.getAllMessages();
 	}
@@ -41,8 +42,7 @@ public class MessageResource {
 	 * 	and return it. Jersey can do this via annotation
 	 */
 	@GET		
-	@Path("/{messageId}")
-	@Produces(MediaType.APPLICATION_JSON)	
+	@Path("/{messageId}")	
 	public Message getMessage(@PathParam("messageId") long messageId){
 		return MessageService.getMessage(messageId);
 		
@@ -50,16 +50,13 @@ public class MessageResource {
 	
 	//Allows you to send JSON in the POST and
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)	
+	
 	public Message addMessage(Message message){
 		return messageService.addMessage(message);
 	}
 	
 	@PUT
-	@Path("/{messageId}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)	
+	@Path("/{messageId}")	
 	public Message updateMessage(@PathParam("messageId") long id, Message message){
 		message.setId(id);
 		return messageService.updateMessage(message);
@@ -67,7 +64,6 @@ public class MessageResource {
 	
 	@DELETE
 	@Path("/{messageId}")
-	@Produces(MediaType.APPLICATION_JSON)	
 	public void deleteMessage(@PathParam("messageId") long id){
 		messageService.removeMessage(id);
 	}
